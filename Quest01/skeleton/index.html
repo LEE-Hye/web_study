@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<!--DOCTYPE은 html 파일의 최상단에 위치
+	웹 문서가 어떤 버전의 html 언어로 작성되었는지 선언
+	선언 목적 : 문서간의 호환성을 높이기 위해
+-->
+<html>
+<!-- html5 문서의 시작을 알림 -->
+
+<head>
+<!--
+	콘텐츠가 있는 <body>를 처리하기 전에 처리되어야 하는 부분
+	스크립트, CSS, 페이지 설명 등이 온다.
+-->
+
+	<!-- meta타입은 메타 데이터로 html 문서에 대한 정보 설정 -->
+
+	<meta charset="UTF-8">
+	<!--문서가 사용해야 할 문자를 UTF-8로 설정-->
+
+	<!-- TODO: 또 무엇이 필요할까요? -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- 모바일 기기에서도 보기 위해 추가 -->
+	<!-- 화면 영역을 디바이스 너비에 맞추고 초기 화면 배율을 1로 지정 -->
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- 인터넷 익스플로러의 경우 최신 버전에 맞게 적용 -->
+
+	<meta name="description" content="네이버 페이지의 구조를 따라 만들어봅니다.">
+	<!-- 현재 페이지에 대한 설명 / 검색엔진이 체크 -->
+
+	<meta name="author" content="hyebin">
+	<!-- 현재 페이지의 작성자 / 검색엔진이 체크 -->
+
+	<meta name="keywords" content="네이버, 네이버 따라만들기, 네이버 구조">
+	<!-- 검색어 / 검색엔진이 체크 -->
+
+
+	<title>네이버</title>
+	<!-- 페이지의 제목을 설정 / 검색엔진이 체크 -->
+
+	<script src="https://kit.fontawesome.com/5963137a15.js" crossorigin="anonymous"></script>
+	<!-- 아이콘을 쓰기 위해 kit 스크립트 입력  -->
+
+	<link rel="stylesheet" href="#">
+	<!-- 현재 페이지에 적용되는 외부 css파일 -->
+
+	<script src="#"></script>
+	<!-- 현재 페이지에 적용되는 자바스크립트 파일 
+		자바스크립트 : html 페이지에서 사용하는 프로그래밍 언어 
+		body태그 안에도 선언 가능
+	-->
+
+</head>
+
+<body>
+	<!--콘텐츠가 담기는 곳 / 입력한 내용이 웹 브라우저에 표시-->
+
+	<header>
+		<!-- header : 홈페이지 상단 로고나 메인 메뉴 -->
+
+		<!-- TODO: 어디까지를 header로 보는 것이 좋을까요? -->
+		<div class="header_menu">
+			<i class="fas fa-bars"></i>
+			<ul>
+				<li><a href="#">QR 체크인</a></li>
+				<li><a href="#"><i class="fab fa-cc-apple-pay"></i></a></li>
+				<li><a href="#"><i class="fas fa-print"></i></a></li>
+			</ul>
+		</div>
+
+		<div class="logo">
+			<img class="logo_img" src="img/Naver.png" alt="네이버 로고">
+		</div>
+
+		<form action="#">
+			<section class="search">
+				<div>
+					<input type="text" name="search_input" placeholder="검색어를 입력해주세요.">
+					<ul>
+						<li><button><i class="fas fa-microphone"></i></button></li>
+						<li><button><i class="fas fa-camera"></i></button></li>
+						<li><button><i class="fas fa-map-marker-alt"></i></button></li>
+					</ul>
+				</div>
+			</section>
+		</form>
+		<nav class="menu">
+			<ul>
+				<li>
+					<a href="main.html">
+						<div>
+							<i class="far fa-newspaper"></i>
+							<span>뉴스판</span>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="main.html">
+						<div>
+							<i class="fas fa-chart-bar"></i>
+							<span>경제지표판</span>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="main.html">
+						<div>
+							<i class="fas fa-star"></i>
+							<span>연예판</span>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="main.html">
+						<div>
+							<i class="fas fa-heart"></i>
+							<span>트렌드판</span>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="main.html">
+						<div>
+							<i class="fas fa-envelope"></i>
+							<span>메일</span>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="main.html">
+						<div>
+							<i class="fas fa-coffee"></i>
+							<span>카페</span>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="main.html">
+						<div>
+							<i class="fab fa-blogger"></i>
+							<span>블로그</span>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="main.html">
+						<div>
+							<i class="fab fa-rocketchat"></i>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+
+		<!-- TODO: main은 어떤 식으로 나눌 수 있을까요? -->
+		<div class="container">
+
+			<!-- 첫 번째 -->
+			<section class="now">
+				<div>
+					<strong>10° 맑음</strong>
+					<span>어제보다 2° 높아요</span>
+				</div>
+				<span>|</span>
+				<div>
+					<img class="nowimg" src="img/now.png">
+					<strong>지금 방송중</strong>
+					<ul>
+						<li><a href="#"><img src="img/방송1.png"></a></li>
+						<li><a href="#"><img src="img/방송2.png"></a></li>
+						<li><a href="#"><img src="img/방송3.png"></a></li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- 두 번째 -->
+			<section class="weather">
+				<div>
+					<div>
+						<h3>날씨</h3>
+						<a href="#"><span>서울시 잠실동</span>
+							<i class="fa-solid fa-location-crosshairs"></i>
+					</div>
+					<i class="fa-solid fa-chevron-up"></i></a>
+				</div>
+				<div>
+					<ul>
+						<li><button>시간대별 미세먼지</button></li>
+						<li><button>주간 날씨</button></li>
+						<li><button>시간대별 날씨</button></li>
+						<li><button>주간 미세먼지</button></li>
+					</ul>
+					<ul>
+						<li>
+							<ul>
+								<li>19°</li>
+								<li>|</li>
+								<li>8°</li>
+								<li><i class="fa-solid fa-sun"></i></li>
+								<li>어제</li>
+							</ul>
+						</li>
+						<li>
+							<ul>
+								<li>22°</li>
+								<li>|</li>
+								<li>7°</li>
+								<li><i class="fa-solid fa-sun"></i></li>
+								<li>오늘</li>
+							</ul>
+						</li>
+						<li>
+							<ul>
+								<li>17°</li>
+								<li>|</li>
+								<li>11°</li>
+								<li><i class="fa-solid fa-sun"></i></li>
+								<li>월</li>
+							</ul>
+						</li>
+						<li>
+							<ul>
+								<li>18°</li>
+								<li>|</li>
+								<li>12°</li>
+								<li><i class="fa-solid fa-cloud-showers-heavy"></i></li>
+								<li>화</li>
+							</ul>
+						</li>
+						<li>
+							<ul>
+								<li>17°</li>
+								<li>|</li>
+								<li>4°</li>
+								<li><i class="fa-solid fa-cloud-showers-heavy"></i></li>
+								<li>수</li>
+							</ul>
+						</li>
+						<li>
+							<ul>
+								<li>19°</li>
+								<li>|</li>
+								<li>4°</li>
+								<li><i class="fa-solid fa-sun"></i></li>
+								<li>목</li>
+							</ul>
+						</li>
+						<li>
+							<ul>
+								<li>19°</li>
+								<li>|</li>
+								<li>6°</li>
+								<li><i class="fa-solid fa-sun"></i></li>
+								<li>금</li>
+							</ul>
+						</li>
+						<li>
+							<ul>
+								<li>19°</li>
+								<li>|</li>
+								<li>8°</li>
+								<li><i class="fa-solid fa-sun"></i></li>
+								<li>토</li>
+							</ul>
+						</li>
+						<li>
+							<ul>
+								<li>18°</li>
+								<li>|</li>
+								<li>6°</li>
+								<li><i class="fa-solid fa-sun"></i></li>
+								<li>일</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- 세 번째 -->
+			<section class="covid">
+				<div>
+					<a href="#">
+						<i class="fa-solid fa-virus-covid-slash"></i>
+						<strong>코로나19</strong>
+						<span>국내외 확진 현황</span>
+					</a>
+				</div>
+				<span>|</span>
+				<div>
+					<a href="#">
+						<i class="fa-regular fa-circle-xmark"></i>
+						<strong>코로나19 팩트체크</strong>
+						<span>백신 정보 팩트는?</span>
+					</a>
+				</div>
+			</section>
+
+			<!-- 네 번째 -->
+			<section class="day">
+				<i class="fa-solid fa-building"></i>
+				<span>제 102주년 <strong>대한민국 임시정부 수립일</strong></span>
+			</section>
+
+			<!-- 다섯 번째 -->
+			<section class="app">
+				<img src="img/Naverm.jpg">
+				<span>앱으로 <strong>새로운 네이버</strong>를 더 쾌적하게 사용해 보세요.</span>
+				<a href="#">앱 사용하기</a>
+			</section>
+
+			<!-- 여섯 번째 -->
+			<section class="webtoon">
+				<a href="#">
+					<strong>웹툰</strong>
+					<i class="fa-solid fa-chevron-down"></i>
+				</a>
+			</section>
+
+			<!-- 일곱 번째 -->
+			<section class="pop_board">
+				<div>
+					<strong>인기 주제 판을 확인해 보세요!</strong>
+					<a href="#"><span>핀관리</span></a>
+				</div>
+				<ul>
+					<li><a href="#"><i class="fa-solid fa-video"></i><span>영화판</span><i
+								class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="#"><i class="fa-solid fa-book"></i><span>뿜판</span><i
+								class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="#"><i class="fa-solid fa-book-bookmark"></i><span>웹툰판</span><i
+								class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="#"><i class="fa-solid fa-chart-line"></i><span>경제M판</span><i
+								class="fa-solid fa-chevron-right"></i></a></li>
+				</ul>
+			</section>
+
+			<!-- 여덟 번째 -->
+			<section class="update">
+				<span>알립니다</span>
+				<a href="#"><span>네이버앱 업데이트 사전 안내</span>
+					<i class="fa-solid fa-chevron-right"></i></a>
+				</a>
+			</section>
+		</div>
+	</main>
+
+	<footer>
+		<!-- footer : 작성자, 연락처, 문서 링크 정보 등 문서 바닥글 -->
+
+		<!-- TODO: 하단의 여러 가지 링크들은 어떻게 처리하면 좋을까요? -->
+		<div class="container">
+			<div>
+				<ul>
+					<li><a href="#">로그인</a><span>|</span></li>
+					<li><a href="#">전체서비스</a><span>|</span></li>
+					<li><a href="#">PC버전</a></li>
+				</ul>
+				<ul>
+					<li><a href="#">이용약관</a><span>|</span></li>
+					<li><a href="#"><strong>개인정보처리방침</strong></a><span>|</span></li>
+					<li><a href="#">고객센터</a></li>
+				</ul>
+				<span>NAVER</span>
+			</div>
+		</div>
+	</footer>
+</body>
+
+</html>
