@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<style>
+		.square {
+			width: 100px;
+			height: 100px;
+			border: 1px dashed black;
+			display: inline-block;
+			margin: 20px;
+		}
+
+		.enabled {
+			background-color: limegreen;
+			border: 1px solid black;
+		}
+	</style>
+</head>
+
+<body>
+	<section class="row1">
+		<div class="square"></div>
+		<div class="square"></div>.
+		<div class="square"></div>
+		<div class="square"></div>
+	</section>
+
+	<section class="row2">
+		<div class="square"></div>
+		<div class="square"></div>
+		<div class="square"></div>
+		<div class="square"></div>
+	</section>
+
+	<script>
+
+		// 선택 할 square 배열에 담기
+		var rowSquares = document.getElementsByClassName('square');
+		console.log(rowSquares)
+
+		var Square = [];
+		for (var i = 0; i < rowSquares.length; i++) {
+			Square.push(rowSquares[i]);
+		}
+
+		console.log(Square);
+
+		// row1의 square 배열
+		var row1_square = Square.slice(0, 4);
+		console.log(row1_square);
+
+		// row2의 square 배열
+		var row2_square = Square.slice(4, 8);
+		console.log(row2_square);
+
+
+		// [1]. 클릭한 박스 색만 바꾸기
+
+		// 1. foreach
+		row1_square.forEach(function(change){
+			change.addEventListener('click',function(){
+				console.log('확인');
+				if(change.style.backgroundColor == 'yellow'){
+					change.style.backgroundColor = 'white';
+				}else{
+					change.style.backgroundColor = 'yellow';
+				}
+
+			})
+		})
+
+
+
+	</script>
+</body>
+
+</html>
