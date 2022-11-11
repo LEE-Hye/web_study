@@ -1,57 +1,210 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
 
-    <title>숫자야구 게임</title>
+<head>
+	<meta charset="utf-8">
 
-    <style>
-      body {
-        width: 50%;
-        max-width: 800px;
-        min-width: 480px;
-        margin: 0 auto;
-      }
+	<title>숫자야구 게임</title>
 
-    </style>
-  </head>
+	<style>
+		body {
+			width: 50%;
+			max-width: 800px;
+			min-width: 480px;
+			margin: 0 auto;
+		}
+	</style>
+</head>
 
-  <body>
-    <h1>숫자야구 게임</h1>
+<body>
+	<h1>숫자야구 게임</h1>
 
-    <li style="margin-bottom:5px;">게임시작을 누르면 랜덤값으로 세자리의 숫자가 지정됩니다.</li>
-    <li style="margin-bottom:5px;">랜덤값 세자리에 표시되는 각각의 숫자는 0이 나올 수 없으며 서로 중복값이 있어서는 안됩니다.</li>
-    <li style="margin-bottom:5px;">유저는 임의 세자리를 기록해서 맞는지 결과를 확인합니다.</li>
-    <li style="margin-bottom:5px;">회별로 기록한 숫자와 설정된숫자를 비교해서 상황을 표현해 줍니다.</li>
-    <li style="margin-bottom:5px;">야구게임이니 9회안에 맞추고 실패시 패배입니다.</li>
-    <div class="setDigitForm">
-      <input type="submit" value="게임시작" class="setDigitSubmit">
-    </div>
-	
-    <div class="form" style="margin-top:40px;">
-      <input type="text" id="guessField" class="guessField">
-      <input type="submit" value="정답확인" class="guessSubmit">
-    </div>
+	<li style="margin-bottom:5px;">게임시작을 누르면 랜덤값으로 세자리의 숫자가 지정됩니다.</li>
+	<li style="margin-bottom:5px;">랜덤값 세자리에 표시되는 각각의 숫자는 0이 나올 수 없으며 서로 중복값이 있어서는 안됩니다.</li>
+	<li style="margin-bottom:5px;">유저는 임의 세자리를 기록해서 맞는지 결과를 확인합니다.</li>
+	<li style="margin-bottom:5px;">회별로 기록한 숫자와 설정된숫자를 비교해서 상황을 표현해 줍니다.</li>
+	<li style="margin-bottom:5px;">야구게임이니 9회안에 맞추고 실패시 패배입니다.</li>
+	<div class="setDigitForm">
+		<input type="submit" value="게임시작" class="setDigitSubmit">
+	</div>
 
-    <div class="resultArea" style="margin-top:40px;">
-      <span>정답여부는 여기에!!</span>
-    </div>
+	<div class="form" style="margin-top:40px;">
+		<input type="text" id="guessField" class="guessField">
+		<input type="submit" value="정답확인" class="guessSubmit">
+	</div>
 
-    <script>
-      /** 
-        # 재령씨를 위한 게임룰 #
-        
-		정답이 176 이라고 했을때
-		1. 485 - 들어맞는 숫자가 아예 없으므로 아웃. 이때부터 4, 5, 8이 후보에서 빠지므로 남는 숫자는 1, 2, 3, 6, 7, 9다  (resultArea 안에 다음과 같이 표현  1회: OUT)
-		2. 312 - 1이 있지만 위치가 다르므로 1볼. (resultArea 안에 1줄 추가  2회: 1볼)
-		3. 167 - 숫자는 전부 맞지만 위치는 1만 맞고 나머지 둘은 다르므로 1스트라이크 2볼. (resultArea 안에 1줄 추가  3회: 1S 2B)
-		4. 671 - 숫자는 전부 맞지만 위치는 다르므로 3볼. (resultArea 안에 1줄 추가  4회: 3B)
-		5. 176 - 전부 맞으므로 승리 (resultArea 안에 1줄 추가  5회: 3S 승리!)     
-      */
-      	
-      /** TODO: 여기에 게임이 작동될 수 있도록 스크립트를 짜보세요  */
-      
+	<div class="resultArea" style="margin-top:40px;">
+		<span>정답여부는 여기에!!</span>
+	</div>
 
-    </script>
-  </body>
+	<script>
+		/**
+		  # 재령씨를 위한 게임룰 #
+		  
+				정답이 176 이라고 했을때
+			1. 485 - 들어맞는 숫자가 아예 없으므로 아웃. 이때부터 4, 5, 8이 후보에서 빠지므로 남는 숫자는 1, 2, 3, 6, 7, 9다  (resultArea 안에 다음과 같이 표현  1회: OUT)
+			2. 312 - 1이 있지만 위치가 다르므로 1볼. (resultArea 안에 1줄 추가  2회: 1볼)
+			3. 167 - 숫자는 전부 맞지만 위치는 1만 맞고 나머지 둘은 다르므로 1스트라이크 2볼. (resultArea 안에 1줄 추가  3회: 1S 2B)
+				4. 671 - 숫자는 전부 맞지만 위치는 다르므로 3볼. (resultArea 안에 1줄 추가  4회: 3B)
+			5. 176 - 전부 맞으므로 승리 (resultArea 안에 1줄 추가  5회: 3S 승리!)     
+		*/
+
+		/** TODO: 여기에 게임이 작동될 수 있도록 스크립트를 짜보세요  */
+
+		/**
+		 * 1. 게임 시작 함수
+		 *  1-1. 2함수 불러오기
+		 * 2. 중복값 없는 랜덤값 저장 함수
+		 * 3. 배열에 저장된 값과 사용자가 입력한 값 비교하는 함수
+		 *  3-1. 유저의 세자리 입력값 받아오기
+		 *  3-2. 비교 후 결과 확인
+		 *  3-3. 결과 여부 화면에 출력
+		 *  3-4. 9회 안에 성공하지 못했을 때 게임 종료
+		 */
+
+		/** 1. 게임 시작 함수 */
+		var gameStart; 		// 게임시작 버튼
+
+		/** 2. 중복값 없는 랜덤값 저장 함수 */
+		var randomNum;  	// 랜덤값 뽑기
+		var randomArr = []; // 뽑은 랜덤값 배열에 담기
+		var i; 				// for문 변수
+
+		/** 3. 사용자가 입력한 값 추출 비교 함수 */
+		var guessValue; 	// 사용자의 추측 값
+		var guessBtn; 		// 추측한 값 정답 확인 버튼
+		var guess1;			// 사용자의 추측 값 1의 자리
+		var guess10; 		// 사용자의 추측 값 10의 자리
+		var guess100; 		// 사용자의 추측 값 100의 자리
+		var guessBall; 		// 몇 볼인지 세어줌
+		var guessStrike;	// 몇 스트라이크인지 세어줌
+		var guessOut;		// 몇 아웃인지 세어줌
+		var guessCount;		// 몇 회 입력했는지 세어줌
+		var resultAreaP;	// 정답 영역 부모
+		var resultAreaSB;	// 정답 스트라이크인지 볼인지 보여줌
+
+		gameStart = document.getElementsByClassName('setDigitSubmit')[0]; 	// 1. 게임시작 버튼
+		guessBtn = document.getElementsByClassName('guessSubmit')[0]; 		// 3. 추측한 값 정답 확인 버튼
+		resultAreaP = document.getElementsByClassName('resultArea')[0];		// 3. 정답 영역 부모
+		resultAreaSB = resultAreaP.getElementsByTagName('span')[0];			// 3. 정답 스트라이크인지 볼인지 보여줌
+		guessBtn.disabled = true;											// 3. 게임 시작 전에 정답확인 버튼 못누르게
+		guessCount = 0;														// 3. 정답 확인 몇 번 누르는지
+
+		/** 2. 중복 값 없는 랜덤 값 저장하는 함수 */
+		// 중복 제거하는 방법 또 찾아보기
+		function randomHamsu() {
+			for (i = 0; i < 3; i++) {
+				randomNum = Math.floor(Math.random() * 9) + 1;
+				if (randomArr.indexOf(randomNum) === -1) { // indexof : 배열에서 지정된 요소를 찾을 수 있는 첫 번째 인덱스 반환. 배열에 존재하지 않으면 -1을 반환
+					randomArr.push(randomNum);
+				} else {
+					i--;
+				}
+			}
+
+			if (randomArr.length > 3) {
+
+				randomArr.splice(0,3);
+			}
+			console.log(randomArr);
+			return randomArr;
+
+		};
+
+		/** 1. 게임시작 버튼 클릭시 랜덤 값 저장하는 함수 불러오기 */
+		gameStart.addEventListener('click', function () {
+
+			randomHamsu();
+			guessBtn.disabled = false;
+
+			
+
+		});
+
+
+
+		/** 3. 배열에 저장된 값과 사용자가 입력한 값 비교 함수 */
+
+		guessBtn.addEventListener('click', function () {
+			guessValue = Number(document.getElementById('guessField').value);
+			console.log('guess값 잘 들어와지는지 : ' + guessValue);
+
+			guess100 = parseInt(guessValue / 100);
+			// console.log('100의 자리 : ' + guess100);
+			guess10 = parseInt((guessValue - guess100 * 100) / 10);
+			// console.log('10의 자리 : ' + guess10);
+			guess1 = guessValue - guess100 * 100 - guess10 * 10;
+			// console.log('1의 자리 : ' + guess1);
+
+			randomHamsu();
+			// console.log(randomArr.indexOf(guess100));
+			// console.log(randomArr.indexOf(guess10));
+			// console.log(randomArr.indexOf(guess1));
+
+			guessCount++;
+
+
+			if (guessCount === 9) {
+				resultAreaSB.innerHTML = '게임 OVER';
+				guessBtn.disabled = true;
+			} else {
+				for (i = 0; i < randomArr.length; i++) {
+					guessBall = 0;
+					guessStrike = 0;
+					guessOut = 0;
+					if (randomArr.indexOf(guess100) > -1) {
+						if (randomArr.indexOf(guess100) === 0) {
+							guessStrike++;
+						} else {
+							guessBall++;
+						}
+					}else{
+						guessOut++;
+					}
+					if (randomArr.indexOf(guess10) > -1) {
+						if (randomArr.indexOf(guess10) === 1) {
+							guessStrike++;
+						} else {
+							guessBall++;
+						}
+					}else{
+						guessOut++;
+					}
+					if (randomArr.indexOf(guess1) > -1) {
+						if (randomArr.indexOf(guess1) === 2) {
+							guessStrike++;
+						} else {
+							guessBall++;
+						}
+					}else{
+						guessOut++;
+					}
+
+					resultAreaSB.innerHTML = guessBall + '볼 ' + guessStrike + '스트라이크 ' + guessOut + '아웃';
+
+					if(guessStrike === 3){
+						guessBtn.disabled = true;
+						resultAreaSB.innerHTML = '왕 다 맞췄습니다~!!🎉';
+					}
+					
+				}
+			}
+
+		});
+
+
+		/** 문제점
+		 * 1. 중복 숫자 입력하면 각각 count돼서 3ball이 됨
+		 * 2. 랜덤값 봅은 함수에 있는 랜덤 배열이 다른데서 쓰려면 지역변수라 안 뽑아져 옴
+		 * 3. 게임 시작 누를 때 랜덤 값 초기화 돼서 나와야 하는데 변화가 없음(새로고침 해야함)
+		 * 4. 일단 코드 자체가 if안에 if안에 if가 있어 지저분함 고쳐야 함(중복값 예외처리 하려면 if가 또 생겨날수도...)
+		 * 5. 입력한 값과 몇 볼 몇 스트라이크 등이였는지 그 전 값들도 다 화면에 출력해주기
+		 
+		 * 일단 실행은 되게끔 quest3-5까지 만들어 놓고 주말에 다시 고치기
+		*/
+
+	</script>
+</body>
+
 </html>
+
