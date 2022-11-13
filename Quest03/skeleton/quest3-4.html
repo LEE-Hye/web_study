@@ -87,7 +87,6 @@
 		resultAreaP = document.getElementsByClassName('resultArea')[0];		// 3. 정답 영역 부모
 		resultAreaSB = resultAreaP.getElementsByTagName('span')[0];			// 3. 정답 스트라이크인지 볼인지 보여줌
 		guessBtn.disabled = true;											// 3. 게임 시작 전에 정답확인 버튼 못누르게
-		guessCount = 0;														// 3. 정답 확인 몇 번 누르는지
 
 		/** 2. 중복 값 없는 랜덤 값 저장하는 함수 */
 		// 중복 제거하는 방법 또 찾아보기
@@ -114,11 +113,27 @@
 		gameStart.addEventListener('click', function () {
 
 			randomHamsu();
-			guessBtn.disabled = false;
+			guessBtn.disabled = false;	// 정답확인 버튼 활성화
+			guessCount = 0;	// 횟수 초기화
+			document.getElementById('guessField').value = '';	// input value값 초기화
+			resultAreaSB.innerHTML = '정답여부는 여기에!!';		// 필드 초기화
 
 
 		});
 
+
+		// 4. 화면에 출력할 것들 함수에 담기
+		function output() {
+			if (randomArr.indexOf(guess1) == -1 && randomArr.indexOf(guess10) == -1 && randomArr.indexOf(guess100) == -1) {
+				resultAreaSB.innerHTML += '<h3> <' + guessCount + '회> OUT';
+			} else {
+				resultAreaSB.innerHTML += '<h3> <' + guessCount + '회>' + guessValue + ' : ' + guessBall + 'B ' + guessStrike + 'S';
+			}
+			if (guessStrike === 3) {
+				guessBtn.disabled = true;
+				resultAreaSB.innerHTML += '<h3>🎊' + guessCount + '번 만에 맞췄습니다~!! 추카포카🎊</h3>';
+			}
+		};
 
 
 		/** 3. 배열에 저장된 값과 사용자가 입력한 값 비교 함수 */
@@ -172,13 +187,8 @@
 					}
 
 				}
-				resultAreaSB.innerHTML += '<h3> <' + guessCount + '회>'+guessValue +' : ' + guessBall + 'B ' + guessStrike + 'S';
-				if (guessStrike === 3) {
-					guessBtn.disabled = true;
-					resultAreaSB.innerHTML += '<h3>🎊' + guessCount + '번 만에 맞췄습니다~!! 추카포카🎊</h3>';
-				}
+				output();
 			}
-
 		});
 
 
@@ -188,8 +198,8 @@
 		 * ✔ 3. 게임 시작 누를 때 랜덤 값 초기화 돼서 나와야 하는데 변화가 없음(새로고침 해야함) ==> 해결 하긴 했어
 		 * 4. 일단 코드 자체가 if안에 if안에 if가 있어 지저분함 고쳐야 함
 		 * ✔ 5. 입력한 값과 몇 볼 몇 스트라이크 등이였는지 그 전 값들도 다 화면에 출력해주기 ==> 했음
-		 * 6. 다 다를 시 아웃도 입력해줘야 할 거 같음
-		 * 7. 💥💥문제 발생!! 게임 시작 눌렀을 때 카운트들이 초기화 되어야 하는데 안되고 있음!!!💥💥
+		 * ✔ 6. 다 다를 시 아웃도 입력해줘야 할 거 같음 ==> 해주긴 했는데 if가 더 생겨버렸어...
+		 * ✔ 7. 💥💥문제 발생!! 게임 시작 눌렀을 때 카운트들이 초기화 되어야 하는데 안되고 있음!!!💥💥 ==> 초기화는 했는데 이런식으로 하는 게 맞는지
 		 * 
 		 * 
 		 
