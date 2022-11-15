@@ -61,6 +61,7 @@
 		 *  3-3. 4. 결과 여부 화면에 출력
 		 *  3-4. 9회 안에 성공하지 못했을 때 게임 종료
 		 * 4. 조건에 따라 화면에 출력하는 함수
+		 * 5. input에 숫자 세자리만 넣게 제약조건 주는 함수
 		 */
 
 		/** 1. 게임 시작 함수 */
@@ -88,6 +89,10 @@
 		resultOutput = document.getElementsByClassName('resultArea')[0];	// 3. 정답 영역 출력하는 곳
 		guessBtn.disabled = true;											// 3. 게임 시작 전에 정답확인 버튼 못누르게
 
+
+
+
+
 		/** 2. 중복 값 없는 랜덤 값 저장하는 함수 */
 		// 중복 제거하는 방법 또 찾아보기
 		function randomHamsu() {
@@ -109,7 +114,7 @@
 		/** 1. 게임시작 버튼 클릭시 랜덤 값 저장하는 함수 불러오기 */
 		gameStart.addEventListener('click', function () {
 			randomHamsu();
-			guessBtn.disabled = false;	// 정답확인 버튼 활성화
+
 			guessCount = 0;				// 횟수 초기화
 			guessInput.value = '';		// input value값 초기화
 			resultOutput.innerHTML = '정답여부는 여기에!!';		// 필드 초기화
@@ -118,7 +123,7 @@
 		/** 4. 조건에 따라 화면에 출력하는 함수 */
 		function output() {
 			if (randomArr.indexOf(guess1) === -1 && randomArr.indexOf(guess10) === -1 && randomArr.indexOf(guess100) === -1) {
-				resultOutput.innerHTML += '<h3> <' + guessCount + '회> OUT';
+				resultOutput.innerHTML += '<h3> <' + guessCount + '회> ' + guessValue + ' : OUT';
 			} else {
 				resultOutput.innerHTML += '<h3> <' + guessCount + '회> ' + guessValue + ' : ' + guessBall + 'B ' + guessStrike + 'S';
 			}
@@ -132,6 +137,24 @@
 			}
 		};
 
+		/** 5. input에 숫자 세자리만 넣게 제약조건 주는 함수 */
+		guessInput.addEventListener('keyup', function () {		// 누르고 떼는 순간 발생 -> 4글자 입력하려 할 때 안됨. (keypress는 4글자 입력후에 5번째 입력하려 할 때 안됨(키보드를 눌러 어떤 텍스트가 작성되는 순간 발생))
+			this.value = this.value.replace(/[^1-9]/g, '');	// 정규표현식: 문자열에서 특정 문자 조합을 찾기 위한 패턴. (/ : 정규표현식은 슬래시로 감싸 작성, ^ : 시작 문자 지정, -숫자 : 숫자만 들어와야 함, g : 전체 판별)
+			if ((this.value.length < 4) && (this.value !== '')) {
+				console.log(this.value);
+				if (this.value.length === 3) {
+					guessBtn.disabled = false;	// 정답확인 버튼 활성화
+				}else{
+					guessBtn.disabled = true;
+				}
+			} else {
+				alert('1~9까지의 3개의 숫자를 넣어주세요!!!!!!!!!!!💢💢');
+				guessBtn.disabled = true;	// 정답확인 버튼 비활성화
+				guessInput.value = '';
+			}
+			
+		});
+
 		/** 3. 배열에 저장된 값과 사용자가 입력한 값 비교 함수 */
 		guessBtn.addEventListener('click', function () {
 			guessValue = guessInput.value;
@@ -139,9 +162,10 @@
 			guess10 = parseInt((guessValue - guess100 * 100) / 10);
 			guess1 = parseInt(guessValue - guess100 * 100 - guess10 * 10);
 
+
 			guessCount++;
-			
-			function check(Num,idx){
+
+			function check(Num, idx) {
 				if (randomArr.indexOf(Num) > -1) {
 					if (randomArr.indexOf(Num) === idx) {
 						guessStrike++;
@@ -153,13 +177,17 @@
 			for (var i = 0; i < randomArr.length; i++) {
 				guessBall = 0;
 				guessStrike = 0;
-				check(guess100,0);
-				check(guess10,1);
-				check(guess1,2);
+				check(guess100, 0);
+				check(guess10, 1);
+				check(guess1, 2);
 			}
 			output();
+			guessBtn.disabled = true;
 			guessInput.value = '';
+
+
 		});
+
 
 
 
@@ -173,9 +201,10 @@
 		 * ✔ 5. 입력한 값과 몇 볼 몇 스트라이크 등이였는지 그 전 값들도 다 화면에 출력해주기 ==> 했음
 		 * ✔ 6. 다 다를 시 아웃도 입력해줘야 할 거 같음 ==> 해주긴 했는데 if가 더 생겨버렸어...
 		 * ✔ 7. 💥💥문제 발생!! 게임 시작 눌렀을 때 카운트들이 초기화 되어야 하는데 안되고 있음!!!💥💥 ==> 초기화는 했는데 이런식으로 하는 게 맞는지
-		 * 8. input 값에 3자리 초과와 한글 입력 시 예외처리 해줘야 할 거 같음
+		 * ✔ 8. input 값에 3자리 초과와 한글 입력 시 예외처리 해줘야 할 거 같음 ==> 해주긴 했는데 공백이랑 3글자 이하는 다 입력이 되어버려... 찾아보자.. => 얘도 해결
 		 * ✔ 9. OUT일 땐 9회 초과 입력해도 게임이 안 끝남 ==> 화면 출력에서 if문을 좀 바꿔줌
 		 * ✔ 10. 정답 확인 누를 때 마다 input 초기화 ==> 정답 확인 버튼 클릭 함수 내에 초기화 줌
+		 * 
 		 
 		 * 일단 실행은 되게끔 quest3-5까지 만들어 놓고 주말에 다시 고치기
 		*/
