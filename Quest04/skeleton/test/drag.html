@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 100%;
+            height: 800px;
+            border: 1px solid gray;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            position: relative;
+            top: 10px;
+            cursor: grab;
+        }
+
+        #modal {
+            position: absolute;
+            z-index: 10;
+            width: 100px;
+            height: 100px;
+			display: flex;
+            background: rgba(69, 139, 197, 0.70);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: right;
+        }
+        .box:active{
+            cursor: grabbing;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="/Quest04/skeleton/img/icon1.png" alt=""><span>안녀앗헤요</span></img>
+
+        <h1>마우스 이벤트 객체 : 박스의 옵셋 영역 좌표 이용하기</h1>
+        <div class="container">
+            <div class="box" id="modal">
+                <span>X</span>
+            </div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        
+
+
+    <script>
+        window.addEventListener('load', function () {
+            var container = document.querySelector('.container');
+            var dragging = false;
+            var offset = { x: 0, y: 0 };
+            var current = null;
+            var left = container.offsetLeft;
+            var top = container.offsetTop;
+
+            console.log(left);
+            console.log(top);
+
+            document.onmousedown = function (e) {
+                if (e.target.classList.contains('box')) {
+                    dragging = true;
+                    current = e.target;
+                    offset.x = e.offsetX;
+                    offset.y = e.offsetY;
+                }
+            }
+
+            document.onmousemove = function (e) {
+                console.log(dragging)
+                if (!dragging) return;
+
+                var x = e.pageX - offset.x - left;
+                var y = e.pageY - offset.y - top;
+
+                current.style.left = x + 'px';
+                current.style.top = y + 'px';
+            }
+
+            document.onmouseup = function (e) {
+                dragging = false;
+            }
+
+        })
+    </script>
+</body>
+
+</html>
