@@ -1,70 +1,28 @@
 var i = 0;
-var k = 0;
+var j = 0;
 var contain;
 var tabPlus;
 var tab;
 var tabClose;
 
-
 class Desktop {
 	/* TODO: Desktop 클래스는 어떤 멤버함수와 멤버변수를 가져야 할까요? */
 	constructor() {		// 객체를 만들 때 바로 실행해줄라고 사용하는 메서드 집어넣음
-		this.createTab();
 		this.createContainer();
-		this.createBtn();
 		this.drag();
 		this.clear();
 	}
 
-	/** 탭 생성 */
-	createTab() {
-		tab = document.createElement('div');
-		tab.setAttribute('class', 'tab');
-		desktop1.append(tab);
-
-		var tab1 = document.createElement('button');
-		tab1.setAttribute('class', 'tabs');
-		tab1.innerText = '기본화면';
-		tab.appendChild(tab1);
-
-		tabPlus = document.createElement('button');
-		tabPlus.setAttribute('class', 'tabPlus');
-		tabPlus.innerText = '➕';
-		tab.appendChild(tabPlus);
-	};
 
 	/** 컨테이너 생성 */
 	createContainer() {
-		i++;
-		// ********************컨테이너 생성 ********************
 		contain = document.createElement('div');
 		contain.setAttribute('class', 'container');
-		contain.setAttribute('id', 'contain' + i);
+		contain.setAttribute('id' , 'contain' + j);
 		desktop1.appendChild(contain);
-		// ********************컨테이너 생성 ********************
 	};
 
-	/** 폴더 아이콘 초기화 버튼 생성 */
-	createBtn() {
-		var btn = document.createElement('div');
-		btn.setAttribute('class', 'btn');
-		desktop1.appendChild(btn);
 
-		var newFoldBtn = document.createElement('button');
-		newFoldBtn.setAttribute('class', 'folderBtn');
-		newFoldBtn.innerText = '폴더 생성';
-		btn.appendChild(newFoldBtn);
-
-		var newIconBtn = document.createElement('button');
-		newIconBtn.setAttribute('class', 'iconBtn');
-		newIconBtn.innerText = '아이콘 생성';
-		btn.appendChild(newIconBtn);
-
-		var newClearBtn = document.createElement('button');
-		newClearBtn.setAttribute('class', 'clearBtn');
-		newClearBtn.innerText = '초기화';
-		btn.appendChild(newClearBtn);
-	};
 
 	/** 드래그 */
 	drag() {
@@ -90,9 +48,9 @@ class Desktop {
 				if (!dragging) return;
 				if (e.target.classList.contains('foldIcon')) {
 					current.style.left = e.pageX - offset.x - current.dataset.left + 'px';
-					current.style.top = e.pageY - offset.y - current.dataset.top - 35 + 'px';
+					current.style.top = e.pageY - offset.y - current.dataset.top - 5 + 'px';
 				} else {
-					current.style.left = e.pageX - offset.x - left - 700 + 'px';
+					current.style.left = e.pageX - offset.x - left + 'px';
 					current.style.top = e.pageY - offset.y - top + 'px';
 				}
 			});
@@ -105,10 +63,12 @@ class Desktop {
 	/** 초기화 */
 	clear() {
 		document.querySelector('.clearBtn').addEventListener('click', function () {
-			location.reload();
+			contain.innerHTML = '';
 		});
 	};
 };
+
+
 
 class Folder {
 	/* TODO: Folder 클래스는 어떤 멤버함수와 멤버변수를 가져야 할까요? */
@@ -119,6 +79,7 @@ class Folder {
 	folderMake() {
 		i = 0;
 		document.querySelector('.folderBtn').addEventListener('click', function () {
+			console.log('클릭 잘 돼?')
 			// ********************폴더 html S ********************
 			var newFolder = document.createElement('img');
 			i++;
@@ -154,6 +115,10 @@ class Folder {
 	};
 };
 
+
+
+
+
 class Icon {
 	/* TODO: Icon 클래스는 어떤 멤버함수와 멤버변수를 가져야 할까요? */
 	constructor() {
@@ -177,6 +142,10 @@ class Icon {
 	};
 };
 
+
+
+
+
 class Modal {
 	/* TODO: Modal 클래스는 어떤 멤버함수와 멤버변수를 가져야 할까요? */
 	constructor() {
@@ -193,7 +162,7 @@ class Modal {
 				function modalOn() {
 					modal.style.display = 'flex';
 				};
-				
+
 				/** 모달 닫기 */
 				function modalOff() {
 					modal.style.display = 'none';
@@ -217,31 +186,71 @@ class Modal {
 	};
 };
 
+
+
+
+
 class Tab {
 	constructor() {
-		this.tab();
+		this.createTab();
+		this.createBtn();
 	}
-	/** 탭 기능 */
-	tab() {
+	/** 탭 생성 */
+	createTab() {
+		tab = document.createElement('div');
+		tab.setAttribute('class', 'tab');
+		desktop1.append(tab);
+
+		var tab1 = document.createElement('button');
+		tab1.setAttribute('class', 'tabs');
+		tab1.setAttribute('id', 'contain0');
+		tab1.innerText = '기본화면';
+		tab.appendChild(tab1);
+
+		tabPlus = document.createElement('button');
+		tabPlus.setAttribute('class', 'tabPlus');
+		tabPlus.innerText = '➕';
+		tab.appendChild(tabPlus);
+
+
 		tabPlus.addEventListener('click', function () {
-			k++;
+			j++;
 			var tab1 = document.createElement('button');
 			tab1.setAttribute('class', 'tabs');
-			tab1.setAttribute('id', 'contain' + (k + 1));
-			tab1.innerText = '탭입니당' + k;
+			tab1.setAttribute('id', 'contain' + j);
+			tab1.innerText = '탭입니당' + j;
 			tab.appendChild(tab1);
-			// myDesktop.createContainer(k);
+
 
 			tabClose = document.createElement('span');
 			tabClose.setAttribute('class', 'tabClose');
 			tabClose.innerText = 'x';
 			tab1.appendChild(tabClose);
 
+
+			/** 탭 생성시 컨테이너 공간도 같이 생성 */
+			new Desktop();
+
+			/** 생성된 컨테이너 기본 디스플레이 값 none 주기 */
+			contain.style.display = 'none';
+			
+			/** 탭 버튼 id값과 컨테이너 id값이 같다면 display 보여주기 다르다면 안 보여주기 */
+			document.querySelectorAll('.container').forEach(function(containSelect){
+				document.querySelectorAll('.tabs').forEach(function(tabsSelect){
+					tabsSelect.addEventListener('click', function(){
+						if(this.getAttribute('id')===containSelect.getAttribute('id')){
+							containSelect.style.display = 'inline';
+						}else{
+							containSelect.style.display = 'none';
+						}
+					});
+				});
+			});
+
+			// 탭 닫기 버튼
 			tabClose.addEventListener('click', function () {
 				tab1.remove();
 			});
-
-			console.log(contain);
 
 			tab1.addEventListener('mouseover', function () {
 				this.style.color = 'white';
@@ -249,15 +258,29 @@ class Tab {
 			tab1.addEventListener('mouseout', function () {
 				this.style.color = 'black';
 			});
-
-			// tab1.addEventListener('click', function(){
-			// 	if(this.getAttribute('id')==contain.getAttribute('id')){
-			// 		contain.style.display = 'flex';
-			// 	}else{
-			// 		contain.style.display = 'none';
-			// 	}
-			// })
 		});
+	};
+
+	/** 폴더 아이콘 초기화 버튼 생성 */
+	createBtn() {
+		var btn = document.createElement('div');
+		btn.setAttribute('class', 'btn');
+		desktop1.appendChild(btn);
+
+		var newFoldBtn = document.createElement('button');
+		newFoldBtn.setAttribute('class', 'folderBtn');
+		newFoldBtn.innerText = '폴더 생성';
+		btn.appendChild(newFoldBtn);
+
+		var newIconBtn = document.createElement('button');
+		newIconBtn.setAttribute('class', 'iconBtn');
+		newIconBtn.innerText = '아이콘 생성';
+		btn.appendChild(newIconBtn);
+
+		var newClearBtn = document.createElement('button');
+		newClearBtn.setAttribute('class', 'clearBtn');
+		newClearBtn.innerText = '초기화';
+		btn.appendChild(newClearBtn);
 	};
 };
 
@@ -273,3 +296,6 @@ class Tab {
 Drag & Drop API를 사용하지 말고, 실제 마우스 이벤트(mouseover, mousedown, mouseout 등)를 사용하여 구현해 보세요!
 객체 리터럴?
  */
+
+
+// 왠지 그 뭐지 그... 음... 맞아 폴더랑 아이콘 생성할 때도 foreach로 컨테이너가 flex일 때 사용될 수 있도록 하면 될 거 같음

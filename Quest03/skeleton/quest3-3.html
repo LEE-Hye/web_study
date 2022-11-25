@@ -68,6 +68,8 @@
         var resultOutput;           // 정답 여부 화면에 출력
         var count;                  // 몇 번만에 정답 맞추는지
 
+
+
         // 1.
         setDigitNumber = document.getElementById('setDigitNum');                // 자릿수 input 입력 공간
         setDigitSub = document.getElementsByClassName('setDigitSubmit')[0];     // 자릿수 값 보내주기
@@ -99,29 +101,32 @@
             switch (setDigitNumberValue) {
                 case 1:
                     random(10, 1);
-                    resultOutput.innerHTML = '<h3>✔한자리 숫자를 선택하셨습니다.</h3>';
+                    resultOutput.innerHTML = '<h3>✔ 한자리 숫자를 선택하셨습니다.</h3>';
                     break;
                 case 2:
                     random(100, 10);
-                    resultOutput.innerHTML = '<h3>✔두자리 숫자를 선택하셨습니다.</h3>';
+                    resultOutput.innerHTML = '<h3>✔ 두자리 숫자를 선택하셨습니다.</h3>';
                     break;
                 case 3:
                     random(1000, 100);
-                    resultOutput.innerHTML = '<h3>✔세자리 숫자를 선택하셨습니다.</h3>';
+                    resultOutput.innerHTML = '<h3>✔ 세자리 숫자를 선택하셨습니다.</h3>';
                     break;
                 default:
                     resultOutput.innerHTML = '<h3>1~3의 숫자만 넣으십쇼!!!</h3>';
+                    guessFieldSubmit.disabled = true;
                     break;
             }
         });
+
 
         /** 2. 정답 여부 체크 하는 함수 */
         guessFieldSubmit.addEventListener('click', function () {
             count++;
             guessFieldAnswerValue = Number(guessFieldAnswer.value);
-            console.log(ranA*ranB);
+            console.log(ranA * ranB);
             if ((ranA * ranB) !== guessFieldAnswerValue) {
                 resultOutput.innerHTML += '<h3>❌' + count + '번 째 시도 : ' + guessFieldAnswerValue + '은(는) 오답입니다.❌</h3>';
+                guessFieldAnswer.value = '';
                 return;
             }
             resultOutput.innerHTML += '<h3>🎉' + count + ' 번 만에 맞추셨어요~!! "' + guessFieldAnswerValue + '" 가(이) 정답이였습니다!! 축하합니다.🎉</h3>';
@@ -135,7 +140,7 @@
 
 
 
-        
+
 
         /** 문제점이나 궁금한 점?
          * ✔ 1. guessFieldSubmit.disabled이나 resultOutput.innerHTML가 많이 중복되면서 나오는데 어떻게 해야 깔끔하게 보일지 ==> 어쩔 수 없다.

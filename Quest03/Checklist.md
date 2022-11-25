@@ -90,18 +90,13 @@
 
 <br>
 
-2. 프로토타입 기반 객체 지향 언어
-    - 프로토타입을 기반으로 상속을 구현해 불필요한 중복 제거
-
-<br>
-
-3. 인터프리터 언어
+2. 인터프리터 언어
     - 한 줄마다 기계어로 번역
     - 테스트에 용이한 구조지만 처리 속도가 느림
 
 <br>
 
-4. 싱글 스레드 기반 비동기 처리
+3. 싱글 스레드 기반 비동기 처리
     - 호출 스택(Call Stack)이 1개인 단일 스레드
     - 순서대로 코드가 실행되는 걸 보장할 수 없다.
     - 메인 스레드에서 호출되는 함수들이 호출 스택에 쌓여 LIFO 방식으로 실행
@@ -233,7 +228,7 @@
 ```
 `<결과>`
 
-![class_pluss_minuss](https://user-images.githubusercontent.com/91482127/199868783-eca764bf-0b8c-4a7d-a14d-7cd701c788bd.PNG)
+>![class_pluss_minuss](https://user-images.githubusercontent.com/91482127/199868783-eca764bf-0b8c-4a7d-a14d-7cd701c788bd.PNG)
 
 <br>
 
@@ -258,7 +253,7 @@
 ```
 `<결과>`
 
-![class](https://user-images.githubusercontent.com/91482127/199883113-d9e0e316-b5e2-479a-998c-17b0b0023cfb.PNG)
+>![class](https://user-images.githubusercontent.com/91482127/199883113-d9e0e316-b5e2-479a-998c-17b0b0023cfb.PNG)
 
 <br>
 
@@ -288,7 +283,7 @@
 >>
 >>`<결과>`
 >>
->>![class+](https://user-images.githubusercontent.com/91482127/199906402-03d1c298-0a3e-4a76-8de2-d6bf31fa1b34.PNG)
+>>>![class+](https://user-images.githubusercontent.com/91482127/199906402-03d1c298-0a3e-4a76-8de2-d6bf31fa1b34.PNG)
 >>
 >><br>
 
@@ -331,7 +326,7 @@ function local_variable() {
 
 `<지역 변수 예제 결과>`
 
-![local](https://user-images.githubusercontent.com/91482127/199888651-24503760-f422-4254-b95a-9000255f9abc.PNG)
+>![local](https://user-images.githubusercontent.com/91482127/199888651-24503760-f422-4254-b95a-9000255f9abc.PNG)
 
 - `typeof` 연산자는 선언되지 않은 변수를 `undefined`로 반환
 - 지역 변수는 반드시 `var`로 선언 => `var`로 안 하면 전역 변수로 선언됨
@@ -353,7 +348,7 @@ var num = 10;
 
 `<전역 변수 예제 결과>`
     
-![global](https://user-images.githubusercontent.com/91482127/199888632-8deaf6d3-5fd7-408a-9952-b3b63a6e63c1.PNG)
+>![global](https://user-images.githubusercontent.com/91482127/199888632-8deaf6d3-5fd7-408a-9952-b3b63a6e63c1.PNG)
 
 
 
@@ -413,7 +408,7 @@ heybin();
 
 `<결과>`
 
-![hamsu](https://user-images.githubusercontent.com/91482127/199870766-a5e5d2e8-87eb-4ed3-a5b3-2b973817e201.PNG)
+>![hamsu](https://user-images.githubusercontent.com/91482127/199870766-a5e5d2e8-87eb-4ed3-a5b3-2b973817e201.PNG)
 
 ---
 >### 🤍 자바스크립트의 Arrow function은 무엇일까요?
@@ -437,7 +432,7 @@ heybin();
 >> <br>
 >>
 >> `<결과>`  
->> ![5-2](https://user-images.githubusercontent.com/91482127/199868833-c6a4e361-95e0-4394-b51f-7453803d4171.PNG)
+>>> ![5-2](https://user-images.githubusercontent.com/91482127/199868833-c6a4e361-95e0-4394-b51f-7453803d4171.PNG)
 
 >>- 간편하지만 몇 가지 제한점이 있고 모든 상황에서 사용할 순 없음
 >>   1. this나 super에 대한 바인딩이 없음
@@ -449,3 +444,37 @@ heybin();
 
 ---
 ---
+
+## 💙코드리뷰
+- 회사에서는 ES5도 많이 써서 5,6 둘 다 알아야 함
+- 네이밍 구조를 맞추면 좋겠다 ex) arr_img, img_src 를 img위치가 갖게 또 '_'를 잘 사용 안 해서 arrImg, srcImg 이런식으로 맞추기
+- 프로그램은 하나의 문법을 사용하는게 보기 편하다. ex) onclick, addEventListener 둘 중 한 개만 사용 등
+- 요즘 주석은 `/**/` 가 아니라 `/***/`를 사용
+- 값 비교할 때 `==`보단 명확하게 `===`사용
+- 값을 2개 이상 비교할 때 switch case문 사용 (if문을 사용하면 조건 보러 가기가 너무 힘듦)
+- 함수에서 받아온 매개변수는 `_`로 구분 ex) starProgram(line) -> function starProgram(_line)
+- 반복문 시작값 통일되게
+- 함수 뒤 ; 까먹지 말기
+- 웬만하면 변수를 모두 위에다 선언
+- 선언과 할당 분리
+- ★var/let/const의 차이를 확실하게 알아둬라★
+- JS는 `""`도 사용 가능하지만 `''`이게 보편적
+- 변수명 맨 앞글자는 대문자 사용하지 않기 
+- 프로그램 짤 때 주석도 넣어서 설명해주는게 좋음
+- 함수 이름 적을 때 의미있는 이름 적기(어떤 기능인지 느낌 알게끔)
+- ★this에 대해 잘 알아야 함★
+- 요즘 소스는 문자인지 숫자인지 타입을 지정해주는 추세
+
+- 변수를 설정할 때 숫자형이 올 땐 0을 선언해주고, 문자는 ''를 선언해주면 좋음(이 변수는 뭐에 쓰이는지 알 수 있기 때문에)
+- switch 사용할 때 default도 break; 걸어주기
+- 반복문 많이 쓰면 소스 파악 힘들 수 있으니 코드가 길어져도 적게 사용
+- 제약 조건(안 되는 경우)를 else if로 주지 말고 위에서 먼저 if를 주고 else를 주지 말구 밑에것을 동작 못하게 if에 return을 걸어주는게 더 깔끔
+- function은 function끼리 같은 역할 하는 애들끼리 묶어두기
+- 같은 거 초기화 할 땐 함수에 넣기
+
+1. 같은 문장 여러번 적을 때 변수에 집어 넣고 사용하는 게 편함 
+2. 숫자로도 비교할 수 있으면 문자 비교보다 숫자 비교로 하자
+3. 함수 선언시 밑에서 사용할 때 위로 안 올라가게 콘솔을 찍어준다던가(callback return)
+4. 함수명도 확실하게 값을 어떻게 처리하는 지 등 알 수 있게 지어줘야 한다.
+    ex) 3-4 에서 check -> getCheck 처럼
+    ex) set(call해서 끝나는 애) / ins(등록이란 의미) / get(값을 받아오는 거) 등을 접두사로 붙여서 많이 사용
